@@ -1,12 +1,8 @@
-lp = game.Players:FindFirstChild(script.Parent.Parent.Parent.Name)
+lp = game.Players:GetPlayerFromCharacter(script.Parent.Parent.Parent)
 lpchar = lp.Character
 prefix = ";"
 
 local commands = {
-	["version"] = function(args)
-		chat("cfox-commands version ".. cversion)
-	end;
-	
 	["args"] = function(args)
 		if #args == 0 then
 			chat("you need at least 1 argument for this command.")
