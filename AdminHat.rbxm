@@ -1,0 +1,531 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Hat" referent="RBX0">
+		<Properties>
+			<CoordinateFrame name="AttachmentPoint">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">CFoxAdminHat</string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0.5</X>
+					<Y>0.5</Y>
+					<Z>-0.5</Z>
+					<R00>0</R00>
+					<R01>0</R01>
+					<R02>-1</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>-0</R12>
+					<R20>1</R20>
+					<R21>0</R21>
+					<R22>-0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">1</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">0</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="Sparkles" referent="RBX2">
+				<Properties>
+					<bool name="Enabled">true</bool>
+					<string name="Name">Sparkles</string>
+					<Color3 name="SparkleColor">4294901760</Color3>
+				</Properties>
+			</Item>
+			<Item class="Script" referent="RBX3">
+				<Properties>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">C-Admin</string>
+					<ProtectedString name="Source">lp = game.Players:FindFirstChild(script.Parent.Parent.Parent.Name)
+lpchar = lp.Character
+prefix = &quot;;&quot;
+
+local commands = {
+&#9;[&quot;version&quot;] = function(args)
+&#9;&#9;chat(&quot;cfox-commands version &quot;.. cversion)
+&#9;end;
+&#9;
+&#9;[&quot;args&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;local listofargs = &quot;&quot;
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if i ~= 1 then
+&#9;&#9;&#9;&#9;&#9;listofargs = listofargs .. &quot;, &quot; .. args[i]
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;listofargs = args[i]
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;chat(#args ..&quot; arguments: &quot;.. listofargs)
+&#9;&#9;end
+&#9;end;
+&#9;
+&#9;[&quot;kill&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;plrs[i].Character:BreakJoints() --if that somehow doesn&apos;t work, then...
+&#9;&#9;&#9;&#9;&#9;if plrs[i].Character:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;&#9;&#9;&#9;&#9;if not plrs[i].Character.Humanoid.Health == 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.Health = 0
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+&#9;
+&#9;[&quot;paralyze&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;&#9;return
+&#9;&#9;end
+&#9;&#9;if findPlayer() ~= nil then
+&#9;&#9;&#9;victims = findPlayer()
+&#9;&#9;&#9;for i = 1, #victims do
+&#9;&#9;&#9;&#9;victims[i].Character.Humanoid:Destroy()
+&#9;&#9;&#9;end
+&#9;&#9;else
+&#9;&#9;&#9;chat(&quot;can&apos;t find &quot;.. args[1])
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;kick&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character:remove()
+&#9;&#9;&#9;&#9;&#9;&#9;Instance.new(&quot;Message&quot;, plrs[i].PlayerGui).Text = &quot;You have been kicked from this game.&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;wait(3)
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i]:remove()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;respawn&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character:remove()
+&#9;&#9;&#9;&#9;&#9;&#9;wait(1)
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i]:LoadCharacter()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;sparkles&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;Instance.new(&quot;Sparkles&quot;, plrs[i].Character.Torso)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;smoke&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;Instance.new(&quot;Smoke&quot;, plrs[i].Character.Torso)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;fire&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;Instance.new(&quot;Fire&quot;, plrs[i].Character.Torso)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;unsparkles&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;for i,v in pairs(plrs[i].Character.Torso:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if v.Name == &quot;Sparkles&quot; then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;v:Remove()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;unsmoke&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;for i,v in pairs(plrs[i].Character.Torso:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if v.Name == &quot;Smoke&quot; then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;v:Remove()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;unfire&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;for i,v in pairs(plrs[i].Character.Torso:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if v.Name == &quot;Fire&quot; then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;v:Remove()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;jump&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.Jump = true
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;sit&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.Sit = true
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;stun&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.PlatformStand = true
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;unstun&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.PlatformStand = false
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;god&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.MaxHealth = math.huge()
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.Health = math.huge()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;ungod&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.MaxHealth = 100
+&#9;&#9;&#9;&#9;&#9;&#9;plrs[i].Character.Humanoid.Health = 100
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;ff&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;Instance.new(&quot;ForceField&quot;, plrs[i].Character)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+
+&#9;[&quot;unff&quot;] = function(args)
+&#9;&#9;if #args == 0 then
+&#9;&#9;&#9;chat(&quot;you need at least 1 argument for this command.&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;for i = 1, #args do
+&#9;&#9;&#9;&#9;if findPlayer(args[i]) ~= nil then
+&#9;&#9;&#9;&#9;&#9;local plrs = findPlayer(args[i])
+&#9;&#9;&#9;&#9;&#9;for i = 1, #plrs do
+&#9;&#9;&#9;&#9;&#9;&#9;for i,v in pairs(plrs[i].Character:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if v:IsA(&quot;ForceField&quot;) then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;v:remove()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;chat(&quot;can&apos;t find the player(s)&quot;)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end;
+}
+
+--==~~ stuff that makes things do the thing. --==~~
+
+function chat(msg)
+&#9;game:GetService(&quot;Chat&quot;):Chat(lpchar.Head, &quot;[cfox] &quot;.. msg, Enum.ChatColor.Red)
+end
+
+function findPlayer(nameString)
+    local matches = {}
+&#9;if string.lower(nameString) == &quot;me&quot; then
+&#9;&#9;table.insert(matches, lp)
+&#9;&#9;return matches
+&#9;end
+&#9;if string.lower(nameString) == &quot;all&quot; then
+&#9;&#9;for i,v in pairs(game.Players:GetChildren()) do
+&#9;&#9;&#9;table.insert(matches, v)
+&#9;&#9;end
+&#9;&#9;return matches
+&#9;end
+&#9;if string.lower(nameString) == &quot;others&quot; then
+&#9;&#9;for i,v in pairs(game.Players:GetChildren()) do
+&#9;&#9;&#9;if not v == lp then
+&#9;&#9;&#9;&#9;table.insert(matches, v)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;return matches
+&#9;&#9;end
+&#9;end
+    for i,v in ipairs(game.Players:GetPlayers()) do
+        if string.lower(v.Name):match(string.lower(nameString)) then
+            table.insert(matches, v)
+        end
+    end
+    if #matches ~= 0 then
+        return matches
+    else
+        return nil
+    end
+end
+
+local function parse(msg)
+&#9;if string.match(msg, &quot;^&quot;.. prefix) then
+&#9;&#9;return string.gsub(msg, string.match(msg, &quot;^&quot;.. prefix), &apos;&apos;, 1)
+&#9;else
+&#9;&#9;return false
+&#9;end
+end
+
+lp.Chatted:connect(function(msg)
+&#9;if not parse(msg) == false then
+&#9;&#9;msg = parse(msg)
+&#9;&#9;
+&#9;&#9;local args = {}
+&#9;&#9;for arg in string.gmatch(msg, &quot;[^%s]+&quot;) do
+&#9;&#9;&#9;table.insert(args, arg)
+&#9;&#9;end
+&#9;&#9;
+&#9;&#9;local cmdName = args[1]
+&#9;&#9;table.remove(args, 1)
+&#9;&#9;local cmd = commands[cmdName]
+&#9;&#9;
+&#9;&#9;if cmd ~= nil then
+&#9;&#9;&#9;cmd(args)
+&#9;&#9;end
+&#9;end
+end)
+
+h = Instance.new(&quot;Hint&quot;, lp.PlayerGui)
+h.Text = &quot;cfox commands loaded.&quot;
+wait(3)
+h:remove()</ProtectedString>
+				</Properties>
+			</Item>
+		</Item>
+	</Item>
+</roblox>
