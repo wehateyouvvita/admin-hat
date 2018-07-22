@@ -89,9 +89,6 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
-						plrs[i].Character:remove()
-						Instance.new("Message", plrs[i].PlayerGui).Text = "You have been kicked from this game."
-						wait(3)
 						plrs[i]:remove()
 					end
 				else
@@ -109,8 +106,6 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
-						plrs[i].Character:remove()
-						wait(1)
 						plrs[i]:LoadCharacter()
 					end
 				else
