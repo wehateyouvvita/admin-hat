@@ -442,6 +442,7 @@ lp.Chatted:connect(function(msg)
 	end
 end)
 
-h = Instance.new("Hint", lp.PlayerGui).Text = "cfox commands loaded."
+h = Instance.new("Hint", lp.PlayerGui)
+h.Text = "cfox commands loaded."
 wait(3)
 h:remove()
