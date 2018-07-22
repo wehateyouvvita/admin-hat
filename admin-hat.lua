@@ -53,7 +53,7 @@ local commands = {
 		for i,v in pairs(game.Workspace:GetChildren()) do
 			if v:IsA("Sound") then
 				v:Stop()
-				if v.Name == "CFoxSound"
+				if v.Name == "CFoxSound" then
 					v:remove()
 				end
 			end
