@@ -3,6 +3,33 @@ lpchar = lp.Character
 prefix = ";"
 
 local commands = {
+	["stopmusic"] = function()
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if v:IsA("Sound") then
+				v:Stop()
+			end
+		end
+	end;
+
+	["musicurl"] = function(args)
+		if #args ~= 1 then
+			chat("you may only have one argument for this command.")
+			return
+		end
+		musicId = args[1]
+		s = Instance.new("Sound", game.Workspace)
+		s.Volume = 1
+		s.SoundId = musicId --use a full url. http://finobe.com/asset?id=(id) or Roblox's http://roblox.com/asset?id=
+		m = Instance.new("Message", game.Workspace)
+		m.Text = "Loading audio."
+		s:Play()
+		wait(2)
+		s:Stop()
+		wait(2)
+		s:Play()
+		m:remove()
+	end;
+	
 	["args"] = function(args)
 		if #args == 0 then
 			chat("you need at least 1 argument for this command.")
