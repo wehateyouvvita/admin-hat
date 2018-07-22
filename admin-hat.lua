@@ -3,10 +3,59 @@ lpchar = lp.Character
 prefix = ";"
 
 local commands = {
+	["to"] = function(args)
+		if #args ~= 1 then
+			chat("you may only have one argument for this command.")
+			return
+		end
+		if findPlayer(args[1]) ~= nil then
+			plrs = findPlayer(args[1])
+			for i = 1, #plrs do
+				lpchar.Torso.CFrame = CFrame.new(plrs[i].Character.Torso.Position)
+			end
+		else
+			chat("could not find one or more players.")
+		end
+	end;
+	
+	["bring"] = function(args)
+		if #args ~= 1 then
+			chat("you may only have one argument for this command.")
+			return
+		end
+		if findPlayer(args[1]) ~= nil then
+			plrs = findPlayer(args[1])
+			for i = 1, #plrs do
+				plrs[i].Character.Torso.CFrame = CFrame.new(lpchar.Torso.Position)
+			end
+		else
+			chat("could not find one or more players.")
+		end
+	end;
+
+	["tp"] = function(args)
+		if #args ~= 2 then
+			chat("you must have exactly two arguments for this command.")
+			return
+		end
+		teleportedPlrs = findPlayer(args[1])
+		destinationPlrs = findPlayer(args[2])
+		if teleportedPlrs and destinationPlrs ~= nil then
+			for i = 1, #teleportedPlrs do
+				teleportedPlrs[i].Character.Torso.CFrame = CFrame.new(destinationPlrs[i].Character.Torso.Position)
+			end
+		else
+			chat("could not find one or more players.")
+		end
+	end;
+	
 	["stopmusic"] = function()
 		for i,v in pairs(game.Workspace:GetChildren()) do
 			if v:IsA("Sound") then
 				v:Stop()
+				if v.Name == "CFoxSound"
+					v:remove()
+				end
 			end
 		end
 	end;
@@ -18,6 +67,7 @@ local commands = {
 		end
 		musicId = args[1]
 		s = Instance.new("Sound", game.Workspace)
+		s.Name = "CFoxSound"
 		s.Volume = 1
 		s.SoundId = musicId --use a full url. http://finobe.com/asset?id=(id) or Roblox's http://roblox.com/asset?id=
 		m = Instance.new("Message", game.Workspace)
@@ -89,6 +139,9 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
+						plrs[i].Character:remove()
+						Instance.new("Message", plrs[i].PlayerGui).Text = "You have been kicked from this game."
+						wait(3)
 						plrs[i]:remove()
 					end
 				else
@@ -106,6 +159,8 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
+						plrs[i].Character:remove()
+						wait(1)
 						plrs[i]:LoadCharacter()
 					end
 				else
