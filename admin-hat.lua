@@ -59,6 +59,30 @@ local commands = {
 			end
 		end
 	end;
+	
+	["volume"] = function(args)
+		if #args ~= 1 then
+			chat("you may only have one argument for this command.")
+			return
+		end
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if v:IsA("Sound") then
+				v.Volume = tonumber(args[1])
+			end
+		end
+	end;
+	
+	["pitch"] = function(args)
+		if #args ~= 1 then
+			chat("you may only have one argument for this command.")
+			return
+		end
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if v:IsA("Sound") then
+				v.Pitch = tonumber(args[1])
+			end
+		end
+	end;
 
 	["musicurl"] = function(args)
 		if #args ~= 1 then
@@ -66,6 +90,7 @@ local commands = {
 			return
 		end
 		musicId = args[1]
+		commands["stopmusic"]()
 		s = Instance.new("Sound", game.Workspace)
 		s.Name = "CFoxSound"
 		s.Volume = 1
@@ -103,10 +128,12 @@ local commands = {
 			for i = 1, #args do
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
-					plrs[i].Character:BreakJoints() --if that somehow doesn't work, then...
-					if plrs[i].Character:FindFirstChild("Humanoid") then
-						if not plrs[i].Character.Humanoid.Health == 0 then
-							plrs[i].Character.Humanoid.Health = 0
+					for i = 1, #plrs do
+						plrs[i].Character:BreakJoints() --if that somehow doesn't work, then...
+						if plrs[i].Character:FindFirstChild("Humanoid") then
+							if not plrs[i].Character.Humanoid.Health == 0 then
+								plrs[i].Character.Humanoid.Health = 0
+							end
 						end
 					end
 				else
@@ -139,9 +166,6 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
-						plrs[i].Character:remove()
-						Instance.new("Message", plrs[i].PlayerGui).Text = "You have been kicked from this game."
-						wait(3)
 						plrs[i]:remove()
 					end
 				else
@@ -159,8 +183,6 @@ local commands = {
 				if findPlayer(args[i]) ~= nil then
 					local plrs = findPlayer(args[i])
 					for i = 1, #plrs do
-						plrs[i].Character:remove()
-						wait(1)
 						plrs[i]:LoadCharacter()
 					end
 				else
